@@ -1,14 +1,5 @@
 const categoriesURL = 'https://api.mercadolibre.com/sites/MLB/categories';
-// const categorieQueryURL = ;
-
-export const fetchProductsList = (filter) => new Promise((resolve, reject) => {
-  if (filter) {
-    resolve(fetch(`${productsListURL}${filter}`)
-      .then((response) => response.json())
-      .then((data) => data.results));
-  }
-  reject(new Error('Termo de busca não informado'));
-});
+const categorieQueryURL = 'https://api.mercadolibre.com/sites/MLB/search?';
 
 export async function getCategories() {
   return fetch(categoriesURL)
@@ -16,11 +7,14 @@ export async function getCategories() {
 }
 
 export async function getProductsFromCategoryAndQuery(categoryId, query) {
-  if (categoryId || query) {
-    const categorieQueryURL = `https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}_ID&q=${query}`;
-    return fetch(categorieQueryURL)
-      .then((response) => response.json());
+  let url = `${categorieQueryURL}q=${query}`;
+  if (categoryId && query) {
+    url = `${categorieQueryURL}category=${categoryId}&q=${query}`;
+  } else if (categoryId) {
+    url = `${categorieQueryURL}category=${categoryId}`;
   }
+  return fetch(url)
+    .then((response) => response.json());
 }
 
 export async function getProductById() {
