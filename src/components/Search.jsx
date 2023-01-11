@@ -19,6 +19,7 @@ class Search extends Component {
   };
 
   render() {
+    // const { categorie } = this.props;
     const { query, products } = this.state;
     return (
       <div>

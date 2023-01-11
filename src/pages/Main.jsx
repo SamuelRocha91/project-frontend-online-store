@@ -1,35 +1,41 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { getCategories } from '../services/api';
 import Search from '../components/Search';
 
 class Main extends Component {
-  state = {};
+  state = {
+    categories: [],
+    categorie: '',
+  };
 
   componentDidMount() {
-    getCategories().then((data) => this.setState({ categorie: data }));
+    getCategories().then((data) => this.setState({ categories: data }));
   }
 
+  handleClick = (id) => {
+    this.setState({ categorie: id });
+  };
+
   render() {
-    const { categorie } = this.state;
+    const { categories, categorie } = this.state;
     return (
       <>
         <nav>
-          {categorie && categorie.map(((categ) => (
+          {categories && categories.map((({ id, name }) => (
             <button
-              key={ categ.id }
+              key={ id }
               type="button"
               data-testid="category"
+              onClick={ () => this.handleClick(id) }
             >
-              {categ.name}
+              {name}
             </button>
           )))}
           <div data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </div>
-          <Link data-testid="shopping-cart-button" to="/shoppincart"> About </Link>
         </nav>
-        <Search />
+        <Search categorie={ categorie } />
       </>
     );
   }
