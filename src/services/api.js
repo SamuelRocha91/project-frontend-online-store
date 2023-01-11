@@ -1,9 +1,20 @@
+const categoriesURL = 'https://api.mercadolibre.com/sites/MLB/categories';
+const categorieQueryURL = 'https://api.mercadolibre.com/sites/MLB/search?';
+
 export async function getCategories() {
-  // Implemente aqui
+  return fetch(categoriesURL)
+    .then((response) => response.json());
 }
 
-export async function getProductsFromCategoryAndQuery(/* categoryId, query */) {
-  // Implemente aqui! Quando o fizer, descomente os parâmetros que essa função recebe
+export async function getProductsFromCategoryAndQuery(categoryId, query) {
+  let url = `${categorieQueryURL}q=${query}`;
+  if (categoryId && query) {
+    url = `${categorieQueryURL}category=${categoryId}&q=${query}`;
+  } else if (categoryId) {
+    url = `${categorieQueryURL}category=${categoryId}`;
+  }
+  return fetch(url)
+    .then((response) => response.json());
 }
 
 export async function getProductById() {
