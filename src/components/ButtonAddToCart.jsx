@@ -9,12 +9,14 @@ class ButtonAddToCart extends Component {
   };
 
   handleClick = () => {
-    const { title, thumbnail, price } = this.props;
+    const { title, thumbnail, price, id } = this.props;
     this.setState({
       item: {
         titleCart: title,
         thumbnailCart: thumbnail,
         priceCart: price,
+        id,
+        quantidade: 1,
       },
     }, this.saveItem);
   };
@@ -22,8 +24,6 @@ class ButtonAddToCart extends Component {
   saveItem = () => {
     const { item } = this.state;
     const storageItems = JSON.parse(localStorage.getItem(CART_KEY));
-    console.log(item);
-    console.log(storageItems);
     if (storageItems) {
       const items = [...storageItems, item];
       localStorage.setItem(CART_KEY, `${JSON.stringify(items)}`);
@@ -49,6 +49,7 @@ ButtonAddToCart.propTypes = {
   price: PropTypes.number.isRequired,
   thumbnail: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default ButtonAddToCart;
