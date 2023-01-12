@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import Card from './Card';
-import { getProductsFromCategoryAndQuery } from '../services/api';
 
 class Search extends Component {
   state = {
@@ -12,16 +11,8 @@ class Search extends Component {
     this.setState({ query: value });
   };
 
-  handleSubmit = () => {
-    const { changeState } = this.props;
-    const { query } = this.state;
-    getProductsFromCategoryAndQuery(undefined, query)
-      .then((response) => changeState(response.results));
-  };
-
   render() {
-    // const { categorie } = this.props;
-    const { products } = this.props;
+    const { products, handleClick, identifier } = this.props;
     const { query } = this.state;
     return (
       <div>
@@ -35,7 +26,7 @@ class Search extends Component {
           <button
             data-testid="query-button"
             type="button"
-            onClick={ this.handleSubmit }
+            onClick={ () => handleClick(identifier, query) }
           >
             Pesquisar
           </button>
@@ -57,9 +48,14 @@ class Search extends Component {
   }
 }
 
+Search.defaultProps = {
+  identifier: undefined,
+};
+
 Search.propTypes = {
-  products: propTypes.shape(propTypes.string).isRequired,
-  changeState: propTypes.func.isRequired,
+  products: propTypes.arrayOf(propTypes.string).isRequired,
+  identifier: propTypes.string,
+  handleClick: propTypes.func.isRequired,
 };
 
 export default Search;
