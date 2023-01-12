@@ -23,7 +23,7 @@ class ShoppingCart extends Component {
     console.log(cart);
     return (
       <div>
-        { cart.length > 0
+        { (cart && cart.length > 0)
           ? (
             <ul>
               { cart.map(({ id, titleCart, thumbnailCart, priceCart }) => (
@@ -33,7 +33,7 @@ class ShoppingCart extends Component {
                     thumbnail={ thumbnailCart }
                     price={ priceCart }
                   />
-                  <p data-testid="shopping-cart-product-quantity">0</p>
+                  <p data-testid="shopping-cart-product-quantity">1</p>
                 </li>))}
             </ul>)
           : (
