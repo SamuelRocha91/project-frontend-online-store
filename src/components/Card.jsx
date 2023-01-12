@@ -6,7 +6,7 @@ class Card extends Component {
     const { title, thumbnail, price } = this.props;
     return (
       <>
-        <h2>{ title }</h2>
+        <h2 data-testid="shopping-cart-product-name">{ title }</h2>
         <img src={ thumbnail } alt={ title } />
         <p>{ price }</p>
       </>
