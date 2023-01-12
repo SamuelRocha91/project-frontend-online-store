@@ -12,6 +12,7 @@ class ButtonAddToCart extends Component {
     const { title, thumbnail, price, id } = this.props;
     this.setState({
       item: {
+        idCart: id,
         titleCart: title,
         thumbnailCart: thumbnail,
         priceCart: price,
@@ -33,10 +34,11 @@ class ButtonAddToCart extends Component {
   };
 
   render() {
+    const { dataTestId } = this.props;
     return (
       <button
         type="button"
-        data-testid="product-add-to-cart"
+        data-testid={ dataTestId }
         onClick={ this.handleClick }
       >
         Adicionar ao carrinho
@@ -46,10 +48,11 @@ class ButtonAddToCart extends Component {
 }
 
 ButtonAddToCart.propTypes = {
+  id: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   thumbnail: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  dataTestId: PropTypes.string.isRequired,
 };
 
 export default ButtonAddToCart;

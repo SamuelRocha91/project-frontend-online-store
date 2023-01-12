@@ -64,7 +64,6 @@ class ShoppingCart extends Component {
 
   render() {
     const { cart } = this.state;
-    console.log(cart);
     return (
       <div>
         { (cart && cart.length > 0)
@@ -73,6 +72,8 @@ class ShoppingCart extends Component {
               { cart.map(({ id, titleCart, thumbnailCart, priceCart, quantidade }) => (
                 <li key={ id }>
                   <Card
+                    isDetails={ false }
+                    dataTestIdTitle="shopping-cart-product-name"
                     title={ titleCart }
                     thumbnail={ thumbnailCart }
                     price={ priceCart }
