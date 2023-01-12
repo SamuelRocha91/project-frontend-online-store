@@ -1,25 +1,10 @@
 import React, { Component } from 'react';
+import propTypes from 'prop-types';
 import Card from './Card';
-import { getProductsFromCategoryAndQuery } from '../services/api';
 
 class Search extends Component {
-  state = {
-    query: '',
-    products: [],
-  };
-
-  handleChange = ({ target: { value } }) => {
-    this.setState({ query: value });
-  };
-
-  handleSubmit = () => {
-    const { query } = this.state;
-    getProductsFromCategoryAndQuery(undefined, query)
-      .then((response) => this.setState(() => ({ products: response.results })));
-  };
-
   render() {
-    const { query, products } = this.state;
+    const { products, handleClick, identifier, handleChange, query } = this.props;
     return (
       <div>
         <form>
@@ -27,12 +12,12 @@ class Search extends Component {
             value={ query }
             data-testid="query-input"
             type="text"
-            onChange={ this.handleChange }
+            onChange={ handleChange }
           />
           <button
             data-testid="query-button"
             type="button"
-            onClick={ this.handleSubmit }
+            onClick={ () => handleClick(identifier, query) }
           >
             Pesquisar
           </button>
@@ -53,5 +38,17 @@ class Search extends Component {
     );
   }
 }
+
+Search.defaultProps = {
+  identifier: undefined,
+};
+
+Search.propTypes = {
+  products: propTypes.arrayOf(propTypes.string).isRequired,
+  identifier: propTypes.string,
+  handleClick: propTypes.func.isRequired,
+  handleChange: propTypes.func.isRequired,
+  query: propTypes.string.isRequired,
+};
 
 export default Search;
