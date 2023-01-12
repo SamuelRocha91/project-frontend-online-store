@@ -30,6 +30,7 @@ class Search extends Component {
                   title={ title }
                   thumbnail={ thumbnail }
                   price={ price }
+                  id={ id }
                 />
               </li>))
             : <p>Nenhum produto foi encontrado</p>}
