@@ -1,20 +1,14 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import ButtonAddToCart from './ButtonAddToCart';
 
 class Card extends Component {
   render() {
     const { title, thumbnail, price } = this.props;
     return (
       <>
-        <h2>{ title }</h2>
+        <h2 data-testid="shopping-cart-product-name">{ title }</h2>
         <img src={ thumbnail } alt={ title } />
         <p>{ price }</p>
-        <ButtonAddToCart
-          title={title}
-          thumbnail={thumbnail}
-          price={price}
-          />
       </>
     );
   }

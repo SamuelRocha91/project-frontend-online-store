@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Card from './Card';
 import { getProductsFromCategoryAndQuery } from '../services/api';
+import ButtonAddToCart from './ButtonAddToCart';
 
 class Search extends Component {
   state = {
@@ -42,6 +43,13 @@ class Search extends Component {
             ? products.map(({ title, thumbnail, price, id }) => (
               <li key={ id } data-testid="product">
                 <Card
+                  id={ id }
+                  title={ title }
+                  thumbnail={ thumbnail }
+                  price={ price }
+                />
+                <ButtonAddToCart
+                  id={ id }
                   title={ title }
                   thumbnail={ thumbnail }
                   price={ price }

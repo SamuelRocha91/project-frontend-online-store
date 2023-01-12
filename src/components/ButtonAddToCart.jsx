@@ -1,45 +1,36 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-class ButtonAddToCart extends Component {
-  state = {};
+const CART_KEY = 'shopping-cart';
 
-  componentDidMount() {
-    this.verifyStorage;
-  }
+class ButtonAddToCart extends Component {
+  state = {
+    item: {},
+  };
 
   handleClick = () => {
     const { title, thumbnail, price } = this.props;
     this.setState({
-      Item: {
+      item: {
         titleCart: title,
         thumbnailCart: thumbnail,
         priceCart: price,
-      }
-    }, this.saveItem)
-  }
+      },
+    }, this.saveItem);
+  };
 
   saveItem = () => {
-    const { Item } = this.state
-    const getItem = localStorage.getItem('shopping-cart')
-    console.log(Item)
-    console.log(getItem)
-    // this.setState({
-    //   Item: [...Item, getItem]
-    // }) 
-    if(getItem){
-      const Items = [...Item, ]
-      localStorage.setItem('shopping-cart', `${JSON.stringify(Items)}`)
+    const { item } = this.state;
+    const storageItems = JSON.parse(localStorage.getItem(CART_KEY));
+    console.log(item);
+    console.log(storageItems);
+    if (storageItems) {
+      const items = [...storageItems, item];
+      localStorage.setItem(CART_KEY, `${JSON.stringify(items)}`);
+    } else {
+      localStorage.setItem(CART_KEY, `${JSON.stringify([item])}`);
     }
-    localStorage.setItem('shopping-cart', `${JSON.stringify([Item])}`)
-
-    // const { Item } = this.state
-    // const getItem = localStorage.getItem('shopping-cart')
-    // const Items = [getItem, Item]
-    // localStorage.setItem('shopping-cart', `[${JSON.stringify(Items)}`)
-
-  }
-  
+  };
 
   render() {
     return (
