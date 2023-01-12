@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <Switch>
         <Route exact path="/" component={ Main } />
-        <Route path="/shoppincart" component={ ShoppingCart } />
+        <Route path="/shoppingcart" component={ ShoppingCart } />
       </Switch>
     );
   }

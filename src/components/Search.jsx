@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import propTypes from 'prop-types';
 import Card from './Card';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 
 class Search extends Component {
   state = {
     query: '',
-    products: [],
   };
 
   handleChange = ({ target: { value } }) => {
@@ -13,14 +13,16 @@ class Search extends Component {
   };
 
   handleSubmit = () => {
+    const { changeState } = this.props;
     const { query } = this.state;
     getProductsFromCategoryAndQuery(undefined, query)
-      .then((response) => this.setState(() => ({ products: response.results })));
+      .then((response) => changeState(response.results));
   };
 
   render() {
     // const { categorie } = this.props;
-    const { query, products } = this.state;
+    const { products } = this.props;
+    const { query } = this.state;
     return (
       <div>
         <form>
@@ -54,5 +56,10 @@ class Search extends Component {
     );
   }
 }
+
+Search.propTypes = {
+  products: propTypes.shape(propTypes.string).isRequired,
+  changeState: propTypes.func.isRequired,
+};
 
 export default Search;

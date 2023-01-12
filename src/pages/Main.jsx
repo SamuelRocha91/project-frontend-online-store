@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { getCategories } from '../services/api';
+import { Link } from 'react-router-dom';
+import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import Search from '../components/Search';
 
 class Main extends Component {
   state = {
     categories: [],
     categorie: '',
+    products: [],
   };
 
   componentDidMount() {
@@ -13,11 +15,19 @@ class Main extends Component {
   }
 
   handleClick = (id) => {
-    this.setState({ categorie: id });
+    console.log(id);
+    getProductsFromCategoryAndQuery(id, undefined)
+      .then((response) => this.setState({ products: response.results }));
+  };
+
+  changeState = (results) => {
+    this.setState({ products: results });
   };
 
   render() {
-    const { categories, categorie } = this.state;
+    const { categories } = this.state;
+    const { products } = this.state;
+    console.log(products);
     return (
       <>
         <nav>
@@ -35,7 +45,13 @@ class Main extends Component {
             Digite algum termo de pesquisa ou escolha uma categoria.
           </div>
         </nav>
-        <Search categorie={ categorie } />
+        <Search changeState={ this.changeState } { ...this.state } />
+        <Link
+          to="/shoppingcart"
+          data-testid="shopping-cart-button"
+        >
+          About
+        </Link>
       </>
     );
   }
