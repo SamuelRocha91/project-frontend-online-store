@@ -1,37 +1,41 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import propTypes from 'prop-types';
+import { getProductById } from '../services/api';
+import ButtonAddToCart from '../components/ButtonAddToCart';
+import Card from '../components/Card';
 
 class Details extends Component {
   state = {
-    produto: [],
+    produto: {},
   };
 
   componentDidMount() {
-    const URL_BASE = 'https://api.mercadolibre.com/items/';
-    const { match } = this.props;
-    const { params } = match;
-    const { product } = params;
-    fetch(`${URL_BASE}${product}`)
-      .then((response) => response.json())
-      .then((data) => this.setState({ produto: data }));
+    const { match: { params: { product } } } = this.props;
+    getProductById(product).then((data) => this.setState({ produto: data }));
   }
 
   render() {
-    const { produto } = this.state;
+    const { produto: { id, title, thumbnail, price } } = this.state;
     return (
-      <div>
-        <h1 data-testid="product-detail-name">
-          { produto.title }
-        </h1>
-        <img
-          data-testid="product-detail-image"
-          src={ produto.thumbnail }
-          alt={ `${produto.title}` }
+      <>
+        <Card
+          isDetails
+          dataTestIdTitle="product-detail-name"
+          id={ id }
+          title={ title }
+          thumbnail={ thumbnail }
+          price={ price }
         />
-        <p data-testid="product-detail-price">{ produto.price }</p>
+        <ButtonAddToCart
+          dataTestId="product-detail-add-to-cart"
+          id={ id }
+          title={ title }
+          thumbnail={ thumbnail }
+          price={ price }
+        />
         <Link data-testid="shopping-cart-button" to="/shoppingcart"> Ir ao Carrinho</Link>
-      </div>
+      </>
     );
   }
 }

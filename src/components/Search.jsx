@@ -6,6 +6,7 @@ import ButtonAddToCart from './ButtonAddToCart';
 class Search extends Component {
   render() {
     const { products, handleClick, identifier, handleChange, query } = this.props;
+    const isProductsNotEmpty = products.length > 0;
     return (
       <div>
         <form>
@@ -24,16 +25,18 @@ class Search extends Component {
           </button>
         </form>
         <ul>
-          {products.length > 0
+          {isProductsNotEmpty
             ? products.map(({ title, thumbnail, price, id }) => (
               <li key={ id } data-testid="product">
                 <Card
+                  isDetails={ false }
                   id={ id }
                   title={ title }
                   thumbnail={ thumbnail }
                   price={ price }
                 />
                 <ButtonAddToCart
+                  dataTestId="product-add-to-cart"
                   id={ id }
                   title={ title }
                   thumbnail={ thumbnail }

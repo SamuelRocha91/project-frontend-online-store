@@ -30,7 +30,6 @@ class Main extends Component {
     }
     this.setState({ identifier: id, query: word }, () => {
       const { identifier, query } = this.state;
-      console.log(query);
       getProductsFromCategoryAndQuery(identifier, query)
         .then((response) => this.setState({ products: response.results }));
     });
@@ -38,8 +37,6 @@ class Main extends Component {
 
   render() {
     const { categories } = this.state;
-    const { products } = this.state;
-    console.log(products);
     return (
       <>
         <nav>
@@ -59,7 +56,6 @@ class Main extends Component {
         </nav>
         <Link data-testid="shopping-cart-button" to="/shoppingcart"> Carrinho </Link>
         <Search
-          changeState={ this.changeState }
           { ...this.state }
           handleClick={ this.handleClick }
           handleChange={ this.handleChange }

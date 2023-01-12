@@ -11,7 +11,6 @@ class ShoppingCart extends Component {
   }
 
   verifyStorage = () => {
-    console.log('Verificando');
     const getItem = localStorage.getItem('shopping-cart');
     this.setState({
       cart: JSON.parse(getItem),
@@ -20,7 +19,6 @@ class ShoppingCart extends Component {
 
   render() {
     const { cart } = this.state;
-    console.log(cart);
     return (
       <div>
         { (cart && cart.length > 0)
@@ -29,6 +27,8 @@ class ShoppingCart extends Component {
               { cart.map(({ id, titleCart, thumbnailCart, priceCart }) => (
                 <li key={ id }>
                   <Card
+                    isDetails={ false }
+                    dataTestIdTitle="shopping-cart-product-name"
                     title={ titleCart }
                     thumbnail={ thumbnailCart }
                     price={ priceCart }
