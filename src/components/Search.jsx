@@ -3,17 +3,8 @@ import propTypes from 'prop-types';
 import Card from './Card';
 
 class Search extends Component {
-  state = {
-    query: '',
-  };
-
-  handleChange = ({ target: { value } }) => {
-    this.setState({ query: value });
-  };
-
   render() {
-    const { products, handleClick, identifier } = this.props;
-    const { query } = this.state;
+    const { products, handleClick, identifier, handleChange, query } = this.props;
     return (
       <div>
         <form>
@@ -21,7 +12,7 @@ class Search extends Component {
             value={ query }
             data-testid="query-input"
             type="text"
-            onChange={ this.handleChange }
+            onChange={ handleChange }
           />
           <button
             data-testid="query-button"
@@ -56,6 +47,8 @@ Search.propTypes = {
   products: propTypes.arrayOf(propTypes.string).isRequired,
   identifier: propTypes.string,
   handleClick: propTypes.func.isRequired,
+  handleChange: propTypes.func.isRequired,
+  query: propTypes.string.isRequired,
 };
 
 export default Search;

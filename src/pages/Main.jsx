@@ -15,6 +15,10 @@ class Main extends Component {
     getCategories().then((data) => this.setState({ categories: data }));
   }
 
+  handleChange = ({ target: { value } }) => {
+    this.setState({ query: value });
+  };
+
   handleClick = (id, word) => {
     if (word === undefined) {
       const { query } = this.state;
@@ -57,6 +61,7 @@ class Main extends Component {
           changeState={ this.changeState }
           { ...this.state }
           handleClick={ this.handleClick }
+          handleChange={ this.handleChange }
         />
         <Link
           to="/shoppingcart"
