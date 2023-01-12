@@ -1,35 +1,69 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { getCategories } from '../services/api';
+import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import Search from '../components/Search';
 
 class Main extends Component {
-  state = {};
+  state = {
+    categories: [],
+    products: [],
+    identifier: '',
+    query: '',
+  };
 
   componentDidMount() {
-    getCategories().then((data) => this.setState({ categorie: data }));
+    getCategories().then((data) => this.setState({ categories: data }));
   }
 
+  handleChange = ({ target: { value } }) => {
+    this.setState({ query: value });
+  };
+
+  handleClick = (id, word) => {
+    if (word === undefined) {
+      const { query } = this.state;
+      return this.setState({ identifier: id }, () => {
+        const { identifier } = this.state;
+        getProductsFromCategoryAndQuery(identifier, query)
+          .then((response) => this.setState({ products: response.results }));
+      });
+    }
+    this.setState({ identifier: id, query: word }, () => {
+      const { identifier, query } = this.state;
+      console.log(query);
+      getProductsFromCategoryAndQuery(identifier, query)
+        .then((response) => this.setState({ products: response.results }));
+    });
+  };
+
   render() {
-    const { categorie } = this.state;
+    const { categories } = this.state;
+    const { products } = this.state;
+    console.log(products);
     return (
       <>
         <nav>
-          {categorie && categorie.map(((categ) => (
+          {categories && categories.map((({ id, name }) => (
             <button
-              key={ categ.id }
+              key={ id }
               type="button"
               data-testid="category"
+              onClick={ () => this.handleClick(id, undefined) }
             >
-              {categ.name}
+              {name}
             </button>
           )))}
           <div data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </div>
-          <Link data-testid="shopping-cart-button" to="/shoppingcart"> Carrinho </Link>
         </nav>
-        <Search />
+        <Link data-testid="shopping-cart-button" to="/shoppingcart"> Carrinho </Link>
+        <Search
+          changeState={ this.changeState }
+          { ...this.state }
+          handleClick={ this.handleClick }
+          handleChange={ this.handleChange }
+        />
       </>
     );
   }
