@@ -16,6 +16,8 @@ class ButtonAddToCart extends Component {
         titleCart: title,
         thumbnailCart: thumbnail,
         priceCart: price,
+        id,
+        quantidade: 1,
       },
     }, this.saveItem);
   };
@@ -23,8 +25,6 @@ class ButtonAddToCart extends Component {
   saveItem = () => {
     const { item } = this.state;
     const storageItems = JSON.parse(localStorage.getItem(CART_KEY));
-    console.log(item);
-    console.log(storageItems);
     if (storageItems) {
       const items = [...storageItems, item];
       localStorage.setItem(CART_KEY, `${JSON.stringify(items)}`);
