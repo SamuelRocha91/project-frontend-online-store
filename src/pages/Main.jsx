@@ -57,18 +57,13 @@ class Main extends Component {
             Digite algum termo de pesquisa ou escolha uma categoria.
           </div>
         </nav>
+        <Link data-testid="shopping-cart-button" to="/shoppingcart"> Carrinho </Link>
         <Search
           changeState={ this.changeState }
           { ...this.state }
           handleClick={ this.handleClick }
           handleChange={ this.handleChange }
         />
-        <Link
-          to="/shoppingcart"
-          data-testid="shopping-cart-button"
-        >
-          About
-        </Link>
       </>
     );
   }

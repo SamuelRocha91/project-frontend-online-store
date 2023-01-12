@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import Card from './Card';
+import ButtonAddToCart from './ButtonAddToCart';
 
 class Search extends Component {
   render() {
@@ -27,6 +28,13 @@ class Search extends Component {
             ? products.map(({ title, thumbnail, price, id }) => (
               <li key={ id } data-testid="product">
                 <Card
+                  id={ id }
+                  title={ title }
+                  thumbnail={ thumbnail }
+                  price={ price }
+                />
+                <ButtonAddToCart
+                  id={ id }
                   title={ title }
                   thumbnail={ thumbnail }
                   price={ price }
