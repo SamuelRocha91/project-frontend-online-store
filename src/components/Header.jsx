@@ -11,7 +11,7 @@ class Header extends Component {
           <h1 className='header-content'>
             Front-End
           </h1>
-          <h2 header-content>
+          <h2 className="header-content">
             online store
           </h2>
         </spam>

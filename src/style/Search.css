@@ -1,0 +1,36 @@
+div.search {
+  text-align: center;
+  border: 1px solid blue;
+}
+
+spam.search {
+  display: flex;
+  margin: auto;
+}
+
+form.search {
+  align-items: center;
+  display: flex;
+}
+
+spam.search > input {
+  width: 350px;
+}
+
+spam.search > button {
+  background-color: #31C28D;
+  border: 1px solid #19855d;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  margin-left: 5px;
+}
+
+spam.search > button:hover {
+  transition: 0.3;
+  background-color: #22b37d;
+}
+
+spam.search > button:active {
+  background-color: #19855d;
+}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import Card from './Card';
+import '../style/Search.css'
 import ButtonAddToCart from './ButtonAddToCart';
 
 class Search extends Component {
@@ -8,21 +9,22 @@ class Search extends Component {
     const { products, handleClick, identifier, handleChange, query } = this.props;
     const isProductsNotEmpty = products.length > 0;
     return (
-      <div>
-        <form>
-          <input
-            value={ query }
-            data-testid="query-input"
-            type="text"
-            onChange={ handleChange }
-          />
-          <button
-            data-testid="query-button"
-            type="button"
-            onClick={ () => handleClick(identifier, query) }
-          >
-            Pesquisar
-          </button>
+      <div className="search">
+        <form className="search">
+          <spam className="search">
+            <input
+              value={ query }
+              data-testid="query-input"
+              type="text"
+              onChange={ handleChange }
+            />
+            <button
+              data-testid="query-button"
+              type="button"
+              onClick={ () => handleClick(identifier, query) }
+            >
+            </button>
+          </spam>
         </form>
         <ul>
           {isProductsNotEmpty
@@ -43,7 +45,7 @@ class Search extends Component {
                   price={ price }
                 />
               </li>))
-            : <p>Nenhum produto foi encontrado</p>}
+            : <p className="search">Nenhum produto foi encontrado</p>}
         </ul>
       </div>
     );
