@@ -1,11 +1,16 @@
 div.search {
   text-align: center;
-  border: 1px solid blue;
+  height: 100%;
+  /* border: 1px solid blue; */
 }
 
 spam.search {
   display: flex;
   margin: auto;
+}
+
+ul.search {
+  margin: 30px;
 }
 
 form.search {
@@ -15,6 +20,7 @@ form.search {
 
 spam.search > input {
   width: 350px;
+  border: 1px solid #00134d;
 }
 
 spam.search > button {

@@ -26,7 +26,7 @@ class Search extends Component {
             </button>
           </spam>
         </form>
-        <ul>
+        <ul className="search">
           {isProductsNotEmpty
             ? products.map(({ title, thumbnail, price, id }) => (
               <li key={ id } data-testid="product">
