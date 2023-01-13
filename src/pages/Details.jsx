@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import propTypes from 'prop-types';
 import { getProductById } from '../services/api';
 import ButtonAddToCart from '../components/ButtonAddToCart';
 import Card from '../components/Card';
 import Header from '../components/Header';
 import '../style/Details.css';
+import ButtonReturn from '../components/ButtonReturn';
 
 class Details extends Component {
   state = {
@@ -22,6 +22,7 @@ class Details extends Component {
     return (
       <>
         <Header />
+        <ButtonReturn />
         <Card
           isDetails
           dataTestIdTitle="product-detail-name"

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ButtonReturn from '../components/ButtonReturn';
 import Card from '../components/Card';
 import Header from '../components/Header';
 
@@ -68,6 +69,7 @@ class ShoppingCart extends Component {
     return (
       <div>
         <Header />
+        <ButtonReturn />
         { (cart && cart.length > 0)
           ? (
             <ul>
