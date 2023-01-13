@@ -1,24 +1,41 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import '../style/Card.css';
 import { Link } from 'react-router-dom';
 
 class Card extends Component {
   render() {
     const { title, thumbnail, price, id, dataTestIdTitle, isDetails } = this.props;
     return (
-      <>
+      <div className="div-card">
+        <img
+          className="img-card"
+          data-testid="product-detail-image"
+          src={ thumbnail }
+          alt={ title }
+        />
+        <h1
+          className="h1-card"
+          data-testid={ dataTestIdTitle }
+        >
+          { title }
+        </h1>
+        <h2
+          className="h2-card"
+          data-testid="product-detail-price"
+        >
+          { `R$ ${price}` }
+        </h2>
         { !isDetails
           && (
             <Link
+              className="link-details"
               to={ `/details/${id}` }
               data-testid="product-detail-link"
             >
-              Detalhes
+              saber mais
             </Link>)}
-        <h2 data-testid={ dataTestIdTitle }>{ title }</h2>
-        <img data-testid="product-detail-image" src={ thumbnail } alt={ title } />
-        <p data-testid="product-detail-price">{ price }</p>
-      </>
+      </div>
     );
   }
 }

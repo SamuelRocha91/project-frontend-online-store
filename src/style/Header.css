@@ -1,0 +1,26 @@
+header {
+  background-color: #003be5;
+  color: #e2e2e2;
+  display: flex;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.spam-header {
+  margin: auto;
+  padding-left: 8%;
+}
+
+.h1-header {
+  padding-top: 10px;
+  text-shadow: 3px 3px 10px black;
+}
+
+.h2-header {
+  padding-bottom: 10px;
+}
+
+.img-header {
+  padding: 20px;
+  width: 40px;
+}

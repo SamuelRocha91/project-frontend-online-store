@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import Search from '../components/Search';
+import Header from '../components/Header';
 
 class Main extends Component {
   state = {
@@ -39,27 +39,40 @@ class Main extends Component {
     const { categories } = this.state;
     return (
       <>
-        <nav>
-          {categories && categories.map((({ id, name }) => (
-            <button
-              key={ id }
-              type="button"
-              data-testid="category"
-              onClick={ () => this.handleClick(id, undefined) }
+        <Header />
+        <spam className="spam-main">
+          <nav className="nav-categories">
+            <ul className="ul-categories">
+              <h1 className="h1-categories">Categorias</h1>
+              <hr width="220px" align="left" />
+              {categories && categories.map((({ id, name }) => (
+                <li key={ id }>
+                  <button
+                    className="button-categories"
+                    type="button"
+                    data-testid="category"
+                    onClick={ () => this.handleClick(id, undefined) }
+                  >
+                    {name}
+                  </button>
+                </li>
+              )))}
+            </ul>
+          </nav>
+          <div className="div-main-search">
+            <p
+              className="p-categories"
+              data-testid="home-initial-message"
             >
-              {name}
-            </button>
-          )))}
-          <div data-testid="home-initial-message">
-            Digite algum termo de pesquisa ou escolha uma categoria.
+              Digite algum termo de pesquisa ou escolha uma categoria.
+            </p>
+            <Search
+              { ...this.state }
+              handleClick={ this.handleClick }
+              handleChange={ this.handleChange }
+            />
           </div>
-        </nav>
-        <Link data-testid="shopping-cart-button" to="/shoppingcart"> Carrinho </Link>
-        <Search
-          { ...this.state }
-          handleClick={ this.handleClick }
-          handleChange={ this.handleChange }
-        />
+        </spam>
       </>
     );
   }
