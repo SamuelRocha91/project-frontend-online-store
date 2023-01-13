@@ -1,8 +1,15 @@
 header {
   background-color: #003BE5;
-  color: white;
+  color: #e2e2e2;
   text-align: center;
   margin-bottom: 25px;
+  display: flex;
+}
+
+spam.header-content {
+  margin: auto;
+  padding-left: 8%;
+  
 }
 
 h1.header-content{
@@ -12,4 +19,9 @@ h1.header-content{
 
 h2.header-content {
   padding-bottom: 10px;
+}
+
+img.header-content {
+  width: 40px;
+  padding: 20px 20px;
 }

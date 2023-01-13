@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Card from '../components/Card';
+import Header from '../components/Header';
 
 const CART_KEY = 'shopping-cart';
 
@@ -66,6 +67,7 @@ class ShoppingCart extends Component {
     const { cart } = this.state;
     return (
       <div>
+        <Header />
         { (cart && cart.length > 0)
           ? (
             <ul>
