@@ -14,7 +14,6 @@ export async function getProductsFromCategoryAndQuery(categoryId, query) {
   } else if (categoryId) {
     url = `${categorieQueryURL}category=${categoryId}`;
   }
-  console.log(url);
   return fetch(url)
     .then((response) => response.json());
 }
