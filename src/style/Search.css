@@ -1,0 +1,58 @@
+.div-search {
+  height: 100%;
+  text-align: center;
+  width: 100%;
+}
+
+.spam-search {
+  display: flex;
+  margin: auto;
+}
+
+.ul-search {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: auto;
+  width: 77%;
+}
+
+.form-search {
+  align-items: center;
+  display: flex;
+}
+
+.p-search {
+  margin: auto;
+}
+
+.spam-search > input {
+  background-color: #f1f1f1;
+  border: 1px solid #00134d;
+  border-radius: 5px;
+  font-size: 20px;
+  margin-bottom: 20px;
+  padding: 0 10px;
+  width: 350px;
+}
+
+.spam-search > button > img {
+  width: 17px;
+}
+
+.spam-search > button {
+  background-color: #31c28d;
+  border: 1px solid #19855d;
+  border-radius: 5px;
+  height: 25px;
+  margin-left: 5px;
+  width: 25px;
+}
+
+.spam-search > button:hover {
+  background-color: #22b37d;
+}
+
+.spam-search > button:active {
+  background-color: #19855d;
+}

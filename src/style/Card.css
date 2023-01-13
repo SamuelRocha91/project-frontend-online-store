@@ -1,0 +1,56 @@
+.li-card {
+  align-items: center;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  box-shadow: 5px 5px 5px #acacac;
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+  margin: 5px;
+  padding: 5px;
+  width: 170px;
+}
+
+.div-card {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+
+}
+
+.link-details {
+  color: black;
+  padding: 1px;
+}
+
+
+.h1-card {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.h2-card {
+  font-size: 14px;
+  font-weight: 600;
+  padding-right: 10px;
+  text-align: right;
+}
+
+.button-card {
+  background-color: #31c28d;
+  border: 1px solid #19855d;
+  border-radius: 10px;
+  font-weight: 600;
+  height: 10%;
+  margin-top: auto;
+  padding: 3px;
+  width: 80%;
+}
+
+.button-card:hover {
+  background-color: #22b37d;
+}
+
+.button-card:active {
+  background-color: #19855d;
+}
