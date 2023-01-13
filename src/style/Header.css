@@ -1,27 +1,26 @@
 header {
-  background-color: #003BE5;
+  background-color: #003be5;
   color: #e2e2e2;
-  text-align: center;
-  margin-bottom: 25px;
   display: flex;
+  margin-bottom: 25px;
+  text-align: center;
 }
 
-spam.header-content {
+.spam-header {
   margin: auto;
   padding-left: 8%;
-  
 }
 
-h1.header-content{
+.h1-header {
   padding-top: 10px;
   text-shadow: 3px 3px 10px black;
 }
 
-h2.header-content {
+.h2-header {
   padding-bottom: 10px;
 }
 
-img.header-content {
+.img-header {
+  padding: 20px;
   width: 40px;
-  padding: 20px 20px;
 }

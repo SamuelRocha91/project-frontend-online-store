@@ -1,54 +1,53 @@
 * {
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
-ul.categories {
+.ul-categories {
   list-style: none;
   padding: 10px;
   text-align: center;
 }
 
-button.categories {
+.button-categories {
   background: none;
   border: none;
-  width: 210px;
-  text-align: left;
   padding: 3px;
+  text-align: left;
+  width: 210px;
 }
 
-h1.categories {
-  text-align: center;
+.h1-categories {
   padding-bottom: 20px;
+  text-align: center;
 }
 
-button.categories:hover {
-  transition: 0.3;
-  font-weight: 700;
-  scale: 1.02;
-}
-nav.categories {
+.nav-categories {
   display: flex;
-  width: 220px;
   margin: 0;
   padding: 0;
+  width: 220px;
 }
 
-spam.main {
-  height: 300px;
+.button-categories:hover {
+  font-weight: 700;
+  scale: 1.02;
+  transition: 0.3;
+}
+
+.spam-main {
   display: flex;
+  height: 300px;
 }
 
-div.main-search {
-  /* border: 1px solid red; */
-  margin: auto;
-  width: 77%;
-  padding-right: 15%;
+.div-main-search {
   height: 100%;
+  margin: auto;
+  width: 100%;
 }
 
-p.categories {
-  height: 40px;
+.p-categories {
   font-size: 20px;
+  height: 40px;
   text-align: center;
 }

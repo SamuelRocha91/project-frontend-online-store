@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import Card from './Card';
-import '../style/Search.css'
+import '../style/Search.css';
 import ButtonAddToCart from './ButtonAddToCart';
 
 class Search extends Component {
@@ -9,9 +9,9 @@ class Search extends Component {
     const { products, handleClick, identifier, handleChange, query } = this.props;
     const isProductsNotEmpty = products.length > 0;
     return (
-      <div className="search">
-        <form className="search">
-          <spam className="search">
+      <div className="div-search">
+        <form className="form-search">
+          <spam className="spam-search">
             <input
               value={ query }
               data-testid="query-input"
@@ -23,13 +23,21 @@ class Search extends Component {
               type="button"
               onClick={ () => handleClick(identifier, query) }
             >
+              <img
+                src="https://img.icons8.com/ios-filled/50/ffffff/search--v1.png"
+                alt="Icone de lupa para pesquisar"
+              />
             </button>
           </spam>
         </form>
-        <ul className="search">
+        <ul className="ul-search">
           {isProductsNotEmpty
             ? products.map(({ title, thumbnail, price, id }) => (
-              <li key={ id } data-testid="product">
+              <li
+                className="li-card"
+                key={ id }
+                data-testid="product"
+              >
                 <Card
                   isDetails={ false }
                   id={ id }
@@ -45,7 +53,7 @@ class Search extends Component {
                   price={ price }
                 />
               </li>))
-            : <p className="search">Nenhum produto foi encontrado</p>}
+            : <p className="p-search">Nenhum produto foi encontrado</p>}
         </ul>
       </div>
     );

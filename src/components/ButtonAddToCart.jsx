@@ -37,11 +37,12 @@ class ButtonAddToCart extends Component {
     const { dataTestId } = this.props;
     return (
       <button
+        className="button-card"
         type="button"
         data-testid={ dataTestId }
         onClick={ this.handleClick }
       >
-        Adicionar ao carrinho
+        COMPRAR
       </button>
     );
   }
