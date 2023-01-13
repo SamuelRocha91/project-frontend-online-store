@@ -1,0 +1,13 @@
+ul.categories {
+  list-style: none;
+  padding-left: 10px;
+}
+
+button.categories {
+  background: none;
+  border: none;
+}
+
+h1.categories {
+  padding-left: 10px;
+}

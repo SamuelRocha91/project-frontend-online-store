@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import Search from '../components/Search';
+import Header from '../components/Header';
 
 class Main extends Component {
   state = {
@@ -38,29 +39,36 @@ class Main extends Component {
   render() {
     const { categories } = this.state;
     return (
-      <>
+      <main>
+        <Header />
         <nav>
-          {categories && categories.map((({ id, name }) => (
-            <button
-              key={ id }
-              type="button"
-              data-testid="category"
-              onClick={ () => this.handleClick(id, undefined) }
-            >
-              {name}
-            </button>
-          )))}
-          <div data-testid="home-initial-message">
+          <h1 className="categories">Categorias</h1>
+          <hr width="220px" align='left'/>
+          <ul className="categories">
+            {categories && categories.map((({ id, name }) => (
+              <li>
+                <button
+                  className="categories"
+                  key={ id }
+                  type="button"
+                  data-testid="category"
+                  onClick={ () => this.handleClick(id, undefined) }
+                >
+                  {name}
+                </button>
+              </li>
+            )))}
+          </ul>
+          <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
-          </div>
+          </p>
         </nav>
-        <Link data-testid="shopping-cart-button" to="/shoppingcart"> Carrinho </Link>
         <Search
           { ...this.state }
           handleClick={ this.handleClick }
           handleChange={ this.handleChange }
         />
-      </>
+      </main>
     );
   }
 }
