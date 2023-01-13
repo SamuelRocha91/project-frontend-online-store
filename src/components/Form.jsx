@@ -12,7 +12,6 @@ class Form extends Component {
   changeState = ({ target: { name, value } }) => {
     this.setState({
       [name]: value,
-      validade: false,
     });
   };
 
@@ -20,11 +19,8 @@ class Form extends Component {
     event.preventDefault();
     const { id, addComments } = this.props;
     const { email, nota, comments } = this.state;
-    const validation = this.verifyValidade();
     if (!email.includes('@') || !nota) {
       this.setState({
-        email: '',
-        comments: '',
         validade: true,
       });
     } else {
@@ -40,18 +36,8 @@ class Form extends Component {
     }
   };
 
-  verifyValidade = () => {
-    const { nota, email, comments } = this.state;
-    const maxNumber = 5;
-    const validNota = Number(nota) >= 1 && Number(nota) <= maxNumber;
-    // const validComments = comments.length > 0;
-    // const regularExpression = /\S+@\S+\.\S+/;
-    const validEmail = email.includes('@');
-    return validNota && validEmail;
-  };
-
   render() {
-    const { email, comments, nota, validade } = this.state;
+    const { email, comments, validade } = this.state;
     return (
       <form>
         <input
@@ -130,6 +116,7 @@ class Form extends Component {
 
 Form.propTypes = {
   id: propTypes.string.isRequired,
+  addComments: propTypes.func.isRequired,
 };
 
 export default Form;
