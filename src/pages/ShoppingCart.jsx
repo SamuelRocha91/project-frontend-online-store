@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import ButtonReturn from '../components/ButtonReturn';
 import Card from '../components/Card';
 import Header from '../components/Header';
@@ -72,40 +73,43 @@ class ShoppingCart extends Component {
         <ButtonReturn />
         { (cart && cart.length > 0)
           ? (
-            <ul>
-              { cart.map(({ id, titleCart, thumbnailCart, priceCart, quantidade }) => (
-                <li key={ id }>
-                  <Card
-                    isDetails={ false }
-                    dataTestIdTitle="shopping-cart-product-name"
-                    title={ titleCart }
-                    thumbnail={ thumbnailCart }
-                    price={ priceCart }
-                  />
-                  <p data-testid="shopping-cart-product-quantity">{ quantidade }</p>
-                  <button
-                    data-testid="product-increase-quantity"
-                    type="button"
-                    onClick={ () => this.increase(id) }
-                  >
-                    +
-                  </button>
-                  <button
-                    type="button"
-                    data-testid="product-decrease-quantity"
-                    onClick={ () => this.decrease(id) }
-                  >
-                    -
-                  </button>
-                  <button
-                    type="button"
-                    data-testid="remove-product"
-                    onClick={ () => this.delete(id) }
-                  >
-                    X
-                  </button>
-                </li>))}
-            </ul>)
+            <>
+              <Link data-testid="checkout-products" to="/checkout">Finalizar Compra</Link>
+              <ul>
+                { cart.map(({ id, titleCart, thumbnailCart, priceCart, quantidade }) => (
+                  <li key={ id }>
+                    <Card
+                      isDetails={ false }
+                      dataTestIdTitle="shopping-cart-product-name"
+                      title={ titleCart }
+                      thumbnail={ thumbnailCart }
+                      price={ priceCart }
+                    />
+                    <p data-testid="shopping-cart-product-quantity">{ quantidade }</p>
+                    <button
+                      data-testid="product-increase-quantity"
+                      type="button"
+                      onClick={ () => this.increase(id) }
+                    >
+                      +
+                    </button>
+                    <button
+                      type="button"
+                      data-testid="product-decrease-quantity"
+                      onClick={ () => this.decrease(id) }
+                    >
+                      -
+                    </button>
+                    <button
+                      type="button"
+                      data-testid="remove-product"
+                      onClick={ () => this.delete(id) }
+                    >
+                      X
+                    </button>
+                  </li>))}
+              </ul>
+            </>)
           : (
             <p data-testid="shopping-cart-empty-message">
               Seu carrinho está vazio
