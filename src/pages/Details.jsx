@@ -52,7 +52,6 @@ class Details extends Component {
           thumbnail={ thumbnail }
           price={ price }
         />
-        <Link data-testid="shopping-cart-button" to="/shoppingcart"> Ir ao Carrinho</Link>
         <Form addComments={ this.addComments } id={ id } />
         {havecomments && comment.map((objeto, index) => (
           <Assessments key={ index } { ...objeto } />
