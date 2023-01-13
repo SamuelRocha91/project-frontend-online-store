@@ -122,6 +122,7 @@ class Checkout extends Component {
             />
           </label>
           <label htmlFor="address">
+            Endereço:
             <input
               type="text"
               id="address"
