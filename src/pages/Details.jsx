@@ -4,6 +4,8 @@ import propTypes from 'prop-types';
 import { getProductById } from '../services/api';
 import ButtonAddToCart from '../components/ButtonAddToCart';
 import Card from '../components/Card';
+import Header from '../components/Header';
+import '../style/Details.css';
 
 class Details extends Component {
   state = {
@@ -19,6 +21,7 @@ class Details extends Component {
     const { produto: { id, title, thumbnail, price } } = this.state;
     return (
       <>
+        <Header />
         <Card
           isDetails
           dataTestIdTitle="product-detail-name"
@@ -34,7 +37,6 @@ class Details extends Component {
           thumbnail={ thumbnail }
           price={ price }
         />
-        <Link data-testid="shopping-cart-button" to="/shoppingcart"> Ir ao Carrinho</Link>
       </>
     );
   }

@@ -8,7 +8,12 @@ class Card extends Component {
     const { title, thumbnail, price, id, dataTestIdTitle, isDetails } = this.props;
     return (
       <div className="div-card">
-        <img data-testid="product-detail-image" src={ thumbnail } alt={ title } />
+        <img
+          className="img-card"
+          data-testid="product-detail-image"
+          src={ thumbnail }
+          alt={ title }
+        />
         <h1
           className="h1-card"
           data-testid={ dataTestIdTitle }
