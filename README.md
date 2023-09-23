@@ -8,4 +8,4 @@
   <li>Criação de componentes;</li>
 </ol>
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/project-frontend-online-store)
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/SamuelRocha91/project-frontend-online-store)
