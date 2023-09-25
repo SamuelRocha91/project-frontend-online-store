@@ -7,5 +7,6 @@
   <li>Manipulação de estado;</li>
   <li>Criação de componentes;</li>
 </ol>
+<p>Nesse projeto foi desenvolvido um app de receitas, utilizando React Hooks e Context API!</p>
 
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/SamuelRocha91/project-frontend-online-store)
