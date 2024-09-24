@@ -84,3 +84,14 @@
   padding: 10px;
   width: 300px;
 }
+
+.display-price {
+  border: 1px solid rgb(197, 173, 173);
+  color: green;
+  padding: 10px;
+  text-align: end;
+}
+
+.list-group-item {
+  text-align: end;
+}
