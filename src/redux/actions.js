@@ -7,6 +7,6 @@ export const addToCart = (item) => ({
 });
 
 export const removeToCart = (item) => ({
-  type: ADD_TO_CART,
+  type: REMOVE_TO_CART,
   payload: item,
 });

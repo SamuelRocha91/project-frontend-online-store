@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addToCart, removeToCart } from '../redux/actions';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import Search from '../components/Search';
 import HeaderComponent from '../components/Header';
@@ -13,6 +15,8 @@ class Main extends Component {
 
   componentDidMount() {
     getCategories().then((data) => this.setState({ categories: data }));
+    const getItem = JSON.parse(localStorage.getItem(CART_KEY) || []);
+    addToCart(getItem);
   }
 
   handleChange = ({ target: { value } }) => {
@@ -76,4 +80,18 @@ class Main extends Component {
   }
 }
 
-export default Main;
+Main.propTypes = {
+  addToCart: PropTypes.func.isRequired,
+  removeToCart: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  cart: state.cart,
+});
+
+const mapDispatchToProps = {
+  addToCart,
+  removeToCart,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
