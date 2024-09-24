@@ -5,10 +5,10 @@
   box-shadow: 5px 5px 5px #acacac;
   display: flex;
   flex-direction: column;
-  height: 350px;
+  height: 400px;
   margin: 5px;
   padding: 5px;
-  width: 170px;
+  width: 200px;
 }
 
 .div-card {

@@ -19,13 +19,14 @@ class Search extends Component {
               onChange={ handleChange }
             />
             <button
-              data-testid="query-button"
+              className="img-btn"
               type="button"
               onClick={ () => handleClick(identifier, query) }
             >
               <img
                 src="https://img.icons8.com/ios-filled/50/ffffff/search--v1.png"
                 alt="Icone de lupa para pesquisar"
+                className="img-btn"
               />
             </button>
           </span>

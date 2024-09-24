@@ -22,7 +22,7 @@ class Card extends Component {
           className="h2-card"
           data-testid="product-detail-price"
         >
-          { `R$ ${price}` }
+          { `R$ ${price.toFixed(2)}` }
         </h2>
         { !isDetails
           && (
