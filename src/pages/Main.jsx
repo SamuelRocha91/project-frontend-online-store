@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { addToCart, removeToCart } from '../redux/actions';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import Search from '../components/Search';
 import HeaderComponent from '../components/Header';
+
+const CART_KEY = 'shopping-cart';
 
 class Main extends Component {
   state = {
@@ -15,8 +18,11 @@ class Main extends Component {
 
   componentDidMount() {
     getCategories().then((data) => this.setState({ categories: data }));
-    const getItem = JSON.parse(localStorage.getItem(CART_KEY) || []);
-    addToCart(getItem);
+    const storageItems = localStorage.getItem(CART_KEY) || '[]';
+    const parsedSTorage = JSON.parse(storageItems);
+    const { insertToCart } = this.props;
+    console.log(parsedSTorage);
+    insertToCart(parsedSTorage);
   }
 
   handleChange = ({ target: { value } }) => {
@@ -81,17 +87,16 @@ class Main extends Component {
 }
 
 Main.propTypes = {
-  addToCart: PropTypes.func.isRequired,
-  removeToCart: PropTypes.func.isRequired,
+  insertToCart: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   cart: state.cart,
 });
 
-const mapDispatchToProps = {
-  addToCart,
-  removeToCart,
-};
+const mapDispatchToProps = (dispatch) => ({
+  insertToCart: (item) => dispatch(addToCart(item)),
+  deleteToCart: (id) => dispatch(removeToCart(id)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

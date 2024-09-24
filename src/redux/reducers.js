@@ -5,14 +5,15 @@ const initialState = {
 };
 
 const rootReducer = (state = initialState, action) => {
+  console.log(action);
   switch (action.type) {
   case ADD_TO_CART:
     return {
-      cart: [...state.cart, action.payload],
+      cart: [...state.cart, ...action.payload],
     };
   case REMOVE_TO_CART:
     return {
-      cart: cart.filter((item) => item.idCart !== action.payload.id),
+      cart: state.cart.filter((item) => item.idCart !== action.payload),
     };
   default:
     return state;

@@ -37,16 +37,19 @@ class Details extends Component {
       <>
         <Header />
         <ButtonReturn />
-        <Card
-          isDetails
-          dataTestIdTitle="product-detail-name"
-          id={ id }
-          title={ title }
-          thumbnail={ thumbnail }
-          price={ price }
-        />
+        <ul className="ul-search">
+          <li className="li-card-two">
+            <Card
+              isDetails
+              id={ id }
+              title={ title }
+              thumbnail={ thumbnail }
+              price={ price }
+            />
+          </li>
+        </ul>
         <ButtonAddToCart
-          dataTestId="product-detail-add-to-cart"
+          className="btn-card-details"
           id={ id }
           title={ title }
           thumbnail={ thumbnail }

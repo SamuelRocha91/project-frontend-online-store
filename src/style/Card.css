@@ -11,6 +11,20 @@
   width: 200px;
 }
 
+.li-card-two {
+  align-items: center;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  box-shadow: 5px 5px 5px #acacac;
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  justify-content: center;
+  margin: 5px;
+  padding: 5px;
+  width: 100%;
+}
+
 .div-card {
   display: flex;
   flex-direction: column;
@@ -53,4 +67,9 @@
 
 .button-card:active {
   background-color: #19855d;
+}
+
+.btn-card-details {
+  margin: 0 13.5%;
+  width: 75%;
 }

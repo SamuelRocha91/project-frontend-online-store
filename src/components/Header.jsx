@@ -1,24 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { connect } from 'react-redux';
 import '../style/Header.css';
-
-const CART_KEY = 'shopping-cart';
+import PropTypes from 'prop-types';
 
 class HeaderComponent extends Component {
-  state = {
-    total: 0,
-  };
-
-  componentDidMount() {
-    const getItem = localStorage.getItem(CART_KEY);
-    this.setState({
-      total: JSON.parse(getItem)
-        .reduce((acc, curr) => acc + Number(curr.quantidade), 0) || 0,
-    });
-  }
-
   render() {
-    const { total } = this.state;
+    const { cart } = this.props;
+    const total = Array.isArray(cart)
+      ? cart.reduce((acc, curr) => Number(acc) + Number(curr.quantidade), 0) : 0;
 
     return (
       <header className="bg-header">
@@ -43,4 +33,16 @@ class HeaderComponent extends Component {
   }
 }
 
-export default HeaderComponent;
+const mapStateToProps = (state) => ({
+  cart: state.cart,
+});
+
+HeaderComponent.propTypes = {
+  cart: PropTypes.arrayOf(
+    PropTypes.shape({
+      quantidade: PropTypes.number.isRequired,
+    }),
+  ).isRequired,
+};
+
+export default connect(mapStateToProps)(HeaderComponent);

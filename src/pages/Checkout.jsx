@@ -1,12 +1,13 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addToCart, removeToCart } from '../redux/actions';
 
 const CART_KEY = 'shopping-cart';
 
 class Checkout extends Component {
   state = {
-    cart: [],
     fullname: '',
     email: '',
     cpf: '',
@@ -16,10 +17,6 @@ class Checkout extends Component {
     pay: '',
     isInvalid: false,
   };
-
-  componentDidMount() {
-    this.verifyStorage();
-  }
 
   handleChange = ({ target: { name, value } }) => {
     this.setState({ [name]: value });
@@ -40,16 +37,8 @@ class Checkout extends Component {
     }
   };
 
-  verifyStorage = () => {
-    const getItem = localStorage.getItem(CART_KEY);
-    this.setState({
-      cart: JSON.parse(getItem),
-    });
-  };
-
   render() {
     const {
-      cart,
       fullname,
       email,
       cpf,
@@ -59,6 +48,8 @@ class Checkout extends Component {
       pay,
       isInvalid,
     } = this.state;
+    const { cart } = this.props;
+
     const total = cart.reduce((acc, curr) => acc + Number(curr.priceCart), 0).toFixed(2);
     return (
       <div className="container my-4">
@@ -239,4 +230,21 @@ Checkout.propTypes = {
   }).isRequired,
 };
 
-export default Checkout;
+const mapStateToProps = (state) => ({
+  cart: state.cart,
+});
+
+const mapDispatchToProps = {
+  addToCart,
+  removeToCart,
+};
+
+Checkout.propTypes = {
+  cart: PropTypes.arrayOf(
+    PropTypes.shape({
+      quantidade: PropTypes.number.isRequired,
+    }),
+  ).isRequired,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout);
