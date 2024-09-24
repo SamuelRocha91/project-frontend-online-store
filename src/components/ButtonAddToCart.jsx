@@ -8,6 +8,12 @@ class ButtonAddToCart extends Component {
     item: {},
   };
 
+  removeItem = (id) => {
+    const storageItems = JSON.parse(localStorage.getItem(CART_KEY));
+    const filteredItems = storageItems.filter((item) => item.idCart !== id);
+    localStorage.setItem(CART_KEY, JSON.stringify(filteredItems));
+  };
+
   handleClick = () => {
     const { title, thumbnail, price, id } = this.props;
     this.setState({
@@ -34,15 +40,17 @@ class ButtonAddToCart extends Component {
   };
 
   render() {
-    const { dataTestId } = this.props;
+    const getItem = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+    const { id } = this.props;
+    const isProductInCarSHoping = getItem.find((item) => item.idCart === id);
+
     return (
       <button
         className="button-card"
         type="button"
-        data-testid={ dataTestId }
-        onClick={ this.handleClick }
+        onClick={ !isProductInCarSHoping ? this.handleClick : this.removeItem(id) }
       >
-        COMPRAR
+        {!isProductInCarSHoping ? 'Adicionar' : 'Remover'}
       </button>
     );
   }
@@ -53,7 +61,6 @@ ButtonAddToCart.propTypes = {
   price: PropTypes.number.isRequired,
   thumbnail: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  dataTestId: PropTypes.string.isRequired,
 };
 
 export default ButtonAddToCart;
