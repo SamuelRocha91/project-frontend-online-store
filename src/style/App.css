@@ -95,3 +95,29 @@
 .list-group-item {
   text-align: end;
 }
+
+.cart-container {
+  padding: 10px;
+}
+
+.img-header {
+  height: auto;
+  margin: 0 auto;
+  max-width: 100%;
+  object-fit: contain;
+  position: relative;
+  width: 120px;
+}
+
+.span-total {
+  background-color: rgb(253, 253, 253);
+  border: 1px solid gray;
+  border-radius: 40%;
+  color: rgb(243, 0, 0);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 6px;
+  position: absolute;
+  right: 30px;
+  top: 10px;
+}

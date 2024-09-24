@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import Search from '../components/Search';
-import Header from '../components/Header';
+import HeaderComponent from '../components/Header';
 
 class Main extends Component {
   state = {
@@ -39,8 +39,8 @@ class Main extends Component {
     const { categories } = this.state;
     return (
       <>
-        <Header />
-        <spam className="spam-main">
+        <HeaderComponent />
+        <span className="spam-main">
           <nav className="nav-categories">
             <ul className="ul-categories">
               <h1 className="h1-categories">Categorias</h1>
@@ -50,7 +50,6 @@ class Main extends Component {
                   <button
                     className="button-categories"
                     type="button"
-                    data-testid="category"
                     onClick={ () => this.handleClick(id, undefined) }
                   >
                     {name}
@@ -62,7 +61,6 @@ class Main extends Component {
           <div className="div-main-search">
             <p
               className="p-categories"
-              data-testid="home-initial-message"
             >
               Digite algum termo de pesquisa ou escolha uma categoria.
             </p>
@@ -72,7 +70,7 @@ class Main extends Component {
               handleChange={ this.handleChange }
             />
           </div>
-        </spam>
+        </span>
       </>
     );
   }

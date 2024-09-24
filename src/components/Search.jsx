@@ -11,7 +11,7 @@ class Search extends Component {
     return (
       <div className="div-search">
         <form className="form-search">
-          <spam className="spam-search">
+          <span className="spam-search">
             <input
               value={ query }
               data-testid="query-input"
@@ -28,7 +28,7 @@ class Search extends Component {
                 alt="Icone de lupa para pesquisar"
               />
             </button>
-          </spam>
+          </span>
         </form>
         <ul className="ul-search">
           {isProductsNotEmpty
@@ -46,7 +46,6 @@ class Search extends Component {
                   price={ price }
                 />
                 <ButtonAddToCart
-                  dataTestId="product-add-to-cart"
                   id={ id }
                   title={ title }
                   thumbnail={ thumbnail }

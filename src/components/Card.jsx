@@ -10,7 +10,6 @@ class Card extends Component {
       <div className="d-flex flex-column align-items-center gap-2 justify-content-center">
         <img
           className="img-thumbnail mr-3"
-          data-testid="product-detail-image"
           src={ thumbnail }
           alt={ title }
         />
