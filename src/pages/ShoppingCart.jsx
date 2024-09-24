@@ -71,49 +71,65 @@ class ShoppingCart extends Component {
       <div>
         <Header />
         <ButtonReturn />
-        { (cart && cart.length > 0)
-          ? (
-            <>
-              <Link data-testid="checkout-products" to="/checkout">Finalizar Compra</Link>
-              <ul>
-                { cart.map(({ id, titleCart, thumbnailCart, priceCart, quantidade }) => (
-                  <li key={ id }>
-                    <Card
-                      isDetails={ false }
-                      dataTestIdTitle="shopping-cart-product-name"
-                      title={ titleCart }
-                      thumbnail={ thumbnailCart }
-                      price={ priceCart }
-                    />
-                    <p data-testid="shopping-cart-product-quantity">{ quantidade }</p>
-                    <button
-                      data-testid="product-increase-quantity"
-                      type="button"
-                      onClick={ () => this.increase(id) }
-                    >
-                      +
-                    </button>
-                    <button
-                      type="button"
-                      data-testid="product-decrease-quantity"
-                      onClick={ () => this.decrease(id) }
-                    >
-                      -
-                    </button>
-                    <button
-                      type="button"
-                      data-testid="remove-product"
-                      onClick={ () => this.delete(id) }
-                    >
-                      X
-                    </button>
-                  </li>))}
-              </ul>
-            </>)
-          : (
-            <p data-testid="shopping-cart-empty-message">
-              Seu carrinho está vazio
-            </p>)}
+        <div className="list-cards">
+          { (cart && cart.length > 0)
+            ? (
+              <>
+                <Link
+                  className="btn btn-primary mb-3"
+                  to="/checkout"
+                >
+                  Finalizar Compra
+                </Link>
+                <ul className="list-group">
+                  {cart
+                    .map(({ id, titleCart, thumbnailCart, priceCart, quantidade }) => (
+                      <li
+                        key={ id }
+                        className={ 'list-group-item d-flex'
+                                + 'justify - content - between align - items - center' }
+                      >
+                        <Card
+                          isDetails={ false }
+                          dataTestIdTitle="shopping-cart-product-name"
+                          title={ titleCart }
+                          thumbnail={ thumbnailCart }
+                          price={ priceCart }
+                        />
+                        <div className="list-btns">
+                          <p className="quantity-text">{ quantidade }</p>
+                          <div>
+                            <button
+                              className="btn btn-outline-secondary"
+                              type="button"
+                              onClick={ () => this.increase(id) }
+                            >
+                              +
+                            </button>
+                            <button
+                              type="button"
+                              className="btn btn-outline-secondary"
+                              onClick={ () => this.decrease(id) }
+                            >
+                              -
+                            </button>
+                            <button
+                              type="button"
+                              className="btn btn-danger"
+                              onClick={ () => this.delete(id) }
+                            >
+                              X
+                            </button>
+                          </div>
+                        </div>
+                      </li>))}
+                </ul>
+              </>)
+            : (
+              <p className="alert alert-warning text-center">
+                Seu carrinho está vazio
+              </p>)}
+        </div>
       </div>
     );
   }

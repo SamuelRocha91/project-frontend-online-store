@@ -5,18 +5,17 @@ import { Link } from 'react-router-dom';
 
 class Card extends Component {
   render() {
-    const { title, thumbnail, price, id, dataTestIdTitle, isDetails } = this.props;
+    const { title, thumbnail, price, id, isDetails } = this.props;
     return (
-      <div className="div-card">
+      <div className="d-flex flex-column align-items-center gap-2 justify-content-center">
         <img
-          className="img-card"
+          className="img-thumbnail mr-3"
           data-testid="product-detail-image"
           src={ thumbnail }
           alt={ title }
         />
         <h1
-          className="h1-card"
-          data-testid={ dataTestIdTitle }
+          className="form-control w-60 text-justify"
         >
           { title }
         </h1>
@@ -42,7 +41,6 @@ class Card extends Component {
 
 Card.propTypes = {
   isDetails: PropTypes.bool.isRequired,
-  dataTestIdTitle: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   thumbnail: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
