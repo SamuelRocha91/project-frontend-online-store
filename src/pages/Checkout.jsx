@@ -234,10 +234,10 @@ const mapStateToProps = (state) => ({
   cart: state.cart,
 });
 
-const mapDispatchToProps = {
-  addToCart,
-  removeToCart,
-};
+const mapDispatchToProps = (dispatch) => ({
+  insertToCart: (item) => dispatch(addToCart(item)),
+  deleteToCart: (id) => dispatch(removeToCart(id)),
+});
 
 Checkout.propTypes = {
   cart: PropTypes.arrayOf(

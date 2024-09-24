@@ -21,7 +21,6 @@ class Main extends Component {
     const storageItems = localStorage.getItem(CART_KEY) || '[]';
     const parsedSTorage = JSON.parse(storageItems);
     const { insertToCart } = this.props;
-    console.log(parsedSTorage);
     insertToCart(parsedSTorage);
   }
 

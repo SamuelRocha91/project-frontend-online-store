@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import ButtonReturn from '../components/ButtonReturn';
 import Card from '../components/Card';
 import Header from '../components/Header';
+import { removeToCart, updateCart } from '../redux/actions';
 
 const CART_KEY = 'shopping-cart';
 
@@ -14,6 +17,13 @@ class ShoppingCart extends Component {
   componentDidMount() {
     this.verifyStorage();
   }
+
+  stateUpdate = () => {
+    const { cart } = this.state;
+    const { updateQuantityProduct } = this.props;
+    updateQuantityProduct(cart);
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  };
 
   verifyStorage = () => {
     const getItem = localStorage.getItem(CART_KEY);
@@ -34,8 +44,7 @@ class ShoppingCart extends Component {
       return item;
     }),
     }), () => {
-      const { cart } = this.state;
-      localStorage.setItem(CART_KEY, JSON.stringify(cart));
+      this.stateUpdate();
     });
   };
 
@@ -51,8 +60,7 @@ class ShoppingCart extends Component {
       return item;
     }),
     }), () => {
-      const { cart } = this.state;
-      localStorage.setItem(CART_KEY, JSON.stringify(cart));
+      this.stateUpdate();
     });
   };
 
@@ -61,6 +69,8 @@ class ShoppingCart extends Component {
       .filter((item) => (item.id !== id)),
     }), () => {
       const { cart } = this.state;
+      const { deleteToCart } = this.props;
+      deleteToCart(id);
       localStorage.setItem(CART_KEY, JSON.stringify(cart));
     });
   };
@@ -134,4 +144,18 @@ class ShoppingCart extends Component {
   }
 }
 
-export default ShoppingCart;
+ShoppingCart.propTypes = {
+  updateQuantityProduct: PropTypes.func.isRequired,
+  deleteToCart: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  cart: state.cart,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  deleteToCart: (id) => dispatch(removeToCart(id)),
+  updateQuantityProduct: (array) => dispatch(updateCart(array)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCart);

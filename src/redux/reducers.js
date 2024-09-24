@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_TO_CART } from './actions';
+import { ADD_TO_CART, REMOVE_TO_CART, UPDATE_TO_CART } from './actions';
 
 const initialState = {
   cart: [],
@@ -14,6 +14,10 @@ const rootReducer = (state = initialState, action) => {
   case REMOVE_TO_CART:
     return {
       cart: state.cart.filter((item) => item.idCart !== action.payload),
+    };
+  case UPDATE_TO_CART:
+    return {
+      cart: action.payload,
     };
   default:
     return state;

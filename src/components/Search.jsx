@@ -37,7 +37,6 @@ class Search extends Component {
               <li
                 className="li-card"
                 key={ id }
-                data-testid="product"
               >
                 <Card
                   isDetails={ false }

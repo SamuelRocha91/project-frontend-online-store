@@ -1,5 +1,11 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
+
+const three = 3;
+const four = 4;
+const five = 5;
+const NOTAS = [1, 2, three, four, five];
 
 class Form extends Component {
   state = {
@@ -39,77 +45,68 @@ class Form extends Component {
   render() {
     const { email, comments, validade } = this.state;
     return (
-      <form>
-        <input
-          data-testid="product-detail-email"
-          type="text"
-          name="email"
-          placeholder="Email"
-          value={ email }
-          onChange={ this.changeState }
-        />
-        <label htmlFor="nota">
-          Nota:
-          <input
-            type="radio"
-            name="nota"
-            value="1"
-            data-testid="1-rating"
-            onChange={ this.handleChange }
-          />
-          1
-          <input
-            type="radio"
-            name="nota"
-            value="2"
-            data-testid="2-rating"
-            onChange={ this.changeState }
-          />
-          2
-          <input
-            type="radio"
-            name="nota"
-            value="3"
-            data-testid="3-rating"
-            onChange={ this.changeState }
-          />
-          3
-          <input
-            type="radio"
-            name="nota"
-            value="4"
-            data-testid="4-rating"
-            onChange={ this.changeState }
-          />
-          4
-          <input
-            type="radio"
-            name="nota"
-            value="5"
-            data-testid="5-rating"
-            onChange={ this.changeState }
-          />
-          5
-        </label>
-        <textarea
-          data-testid="product-detail-evaluation"
-          name="comments"
-          id="comentarios"
-          cols="30"
-          rows="10"
-          placeholder="Mensagem (opcional)"
-          onChange={ this.changeState }
-          value={ comments }
-        />
-        <button
-          data-testid="submit-review-btn"
-          type="submit"
-          onClick={ this.saveAvaliations }
-        >
-          Avaliar
-        </button>
-        {validade && <p data-testid="error-msg">Campos inválidos</p>}
-      </form>
+      <div className="container mt-4">
+
+        <form className="bg-light p-4 border rounded">
+          <h2 className="mb-4">Avaliar Produto</h2>
+          <div className="form-group">
+            <input
+              type="text"
+              name="email"
+              className="form-control"
+              placeholder="Email"
+              value={ email }
+              onChange={ this.changeState }
+            />
+          </div>
+          <div className="form-group mb-4">
+            <label className="d-block mb-2">Nota:</label>
+            <div className="d-flex justify-content-start">
+              {NOTAS.map((notaValue) => (
+                <div className="form-check form-check-inline" key={ notaValue }>
+                  <input
+                    type="radio"
+                    name="nota"
+                    value={ notaValue }
+                    className="form-check-input"
+                    data-testid={ `${notaValue}-rating` }
+                    onChange={ this.changeState }
+                  />
+                  <label className="form-check-label" htmlFor={ `nota-${notaValue}` }>
+                    {notaValue}
+                  </label>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="comments" className="mb-2">Comentários:</label>
+            <textarea
+              data-testid="product-detail-evaluation"
+              name="comments"
+              className="form-control"
+              rows="4"
+              placeholder="Mensagem (opcional)"
+              onChange={ this.changeState }
+              value={ comments }
+            />
+          </div>
+
+          <button
+            data-testid="submit-review-btn"
+            type="submit"
+            className="btn btn-primary mt-3"
+            onClick={ this.saveAvaliations }
+          >
+            Avaliar
+          </button>
+          {validade && (
+            <p className="text-danger mt-2">
+              Campos inválidos
+            </p>)}
+        </form>
+      </div>
     );
   }
 }
