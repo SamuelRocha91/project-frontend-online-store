@@ -1,11 +1,22 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addToCart, removeToCart } from '../redux/actions';
 
 const CART_KEY = 'shopping-cart';
 
 class ButtonAddToCart extends Component {
   state = {
     item: {},
+  };
+
+  removeItem = (id) => {
+    const storageItems = localStorage.getItem(CART_KEY) || '[]';
+    const parsedSTorage = JSON.parse(storageItems);
+    const filteredItems = parsedSTorage.filter((item) => item.idCart !== id);
+    const { deleteToCart } = this.props;
+    deleteToCart(id);
+    localStorage.setItem(CART_KEY, JSON.stringify(filteredItems));
   };
 
   handleClick = () => {
@@ -24,6 +35,8 @@ class ButtonAddToCart extends Component {
 
   saveItem = () => {
     const { item } = this.state;
+    const { insertToCart } = this.props;
+    insertToCart([item]);
     const storageItems = JSON.parse(localStorage.getItem(CART_KEY));
     if (storageItems) {
       const items = [...storageItems, item];
@@ -34,26 +47,48 @@ class ButtonAddToCart extends Component {
   };
 
   render() {
-    const { dataTestId } = this.props;
+    const { id, cart, className } = this.props;
+    const isProductInCarSHoping = cart.find((item) => item.idCart === id);
+
     return (
       <button
-        className="button-card"
+        className={ `button-card ${className}` }
         type="button"
-        data-testid={ dataTestId }
-        onClick={ this.handleClick }
+        onClick={ !isProductInCarSHoping ? this.handleClick : () => this.removeItem(id) }
       >
-        COMPRAR
+        {!isProductInCarSHoping ? 'Adicionar' : 'Remover'}
       </button>
     );
   }
 }
+
+ButtonAddToCart.defaultProps = {
+  className: '',
+};
 
 ButtonAddToCart.propTypes = {
   id: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   thumbnail: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  dataTestId: PropTypes.string.isRequired,
+  cart: PropTypes.arrayOf(
+    PropTypes.shape({
+      idCart: PropTypes.string.isRequired,
+      quantidade: PropTypes.number.isRequired,
+    }),
+  ).isRequired,
+  className: PropTypes.string,
+  insertToCart: PropTypes.func.isRequired,
+  deleteToCart: PropTypes.func.isRequired,
 };
 
-export default ButtonAddToCart;
+const mapStateToProps = (state) => ({
+  cart: state.cart,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  insertToCart: (item) => dispatch(addToCart(item)),
+  deleteToCart: (id) => dispatch(removeToCart(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ButtonAddToCart);

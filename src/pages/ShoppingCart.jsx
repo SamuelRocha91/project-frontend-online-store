@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import ButtonReturn from '../components/ButtonReturn';
 import Card from '../components/Card';
 import Header from '../components/Header';
+import { removeToCart, updateCart } from '../redux/actions';
 
 const CART_KEY = 'shopping-cart';
 
@@ -14,6 +17,13 @@ class ShoppingCart extends Component {
   componentDidMount() {
     this.verifyStorage();
   }
+
+  stateUpdate = () => {
+    const { cart } = this.state;
+    const { updateQuantityProduct } = this.props;
+    updateQuantityProduct(cart);
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  };
 
   verifyStorage = () => {
     const getItem = localStorage.getItem(CART_KEY);
@@ -34,8 +44,7 @@ class ShoppingCart extends Component {
       return item;
     }),
     }), () => {
-      const { cart } = this.state;
-      localStorage.setItem(CART_KEY, JSON.stringify(cart));
+      this.stateUpdate();
     });
   };
 
@@ -51,8 +60,7 @@ class ShoppingCart extends Component {
       return item;
     }),
     }), () => {
-      const { cart } = this.state;
-      localStorage.setItem(CART_KEY, JSON.stringify(cart));
+      this.stateUpdate();
     });
   };
 
@@ -61,6 +69,8 @@ class ShoppingCart extends Component {
       .filter((item) => (item.id !== id)),
     }), () => {
       const { cart } = this.state;
+      const { deleteToCart } = this.props;
+      deleteToCart(id);
       localStorage.setItem(CART_KEY, JSON.stringify(cart));
     });
   };
@@ -71,52 +81,81 @@ class ShoppingCart extends Component {
       <div>
         <Header />
         <ButtonReturn />
-        { (cart && cart.length > 0)
-          ? (
-            <>
-              <Link data-testid="checkout-products" to="/checkout">Finalizar Compra</Link>
-              <ul>
-                { cart.map(({ id, titleCart, thumbnailCart, priceCart, quantidade }) => (
-                  <li key={ id }>
-                    <Card
-                      isDetails={ false }
-                      dataTestIdTitle="shopping-cart-product-name"
-                      title={ titleCart }
-                      thumbnail={ thumbnailCart }
-                      price={ priceCart }
-                    />
-                    <p data-testid="shopping-cart-product-quantity">{ quantidade }</p>
-                    <button
-                      data-testid="product-increase-quantity"
-                      type="button"
-                      onClick={ () => this.increase(id) }
-                    >
-                      +
-                    </button>
-                    <button
-                      type="button"
-                      data-testid="product-decrease-quantity"
-                      onClick={ () => this.decrease(id) }
-                    >
-                      -
-                    </button>
-                    <button
-                      type="button"
-                      data-testid="remove-product"
-                      onClick={ () => this.delete(id) }
-                    >
-                      X
-                    </button>
-                  </li>))}
-              </ul>
-            </>)
-          : (
-            <p data-testid="shopping-cart-empty-message">
-              Seu carrinho está vazio
-            </p>)}
+        <div className="list-cards">
+          { (cart && cart.length > 0)
+            ? (
+              <>
+                <Link
+                  className="btn btn-primary mb-3"
+                  to="/checkout"
+                >
+                  Finalizar Compra
+                </Link>
+                <ul className="ul-items">
+                  {cart
+                    .map(({ id, titleCart, thumbnailCart, priceCart, quantidade }) => (
+                      <li
+                        key={ id }
+                        className="list-car-shop"
+                      >
+                        <Card
+                          isDetails={ false }
+                          dataTestIdTitle="shopping-cart-product-name"
+                          title={ titleCart }
+                          thumbnail={ thumbnailCart }
+                          price={ priceCart }
+                        />
+                        <div className="list-btns">
+                          <p className="quantity-text">{ quantidade }</p>
+                          <div>
+                            <button
+                              className="btn btn-outline-secondary"
+                              type="button"
+                              onClick={ () => this.increase(id) }
+                            >
+                              +
+                            </button>
+                            <button
+                              type="button"
+                              className="btn btn-outline-secondary"
+                              onClick={ () => this.decrease(id) }
+                            >
+                              -
+                            </button>
+                            <button
+                              type="button"
+                              className="btn btn-danger"
+                              onClick={ () => this.delete(id) }
+                            >
+                              X
+                            </button>
+                          </div>
+                        </div>
+                      </li>))}
+                </ul>
+              </>)
+            : (
+              <p className="alert alert-warning text-center">
+                Seu carrinho está vazio
+              </p>)}
+        </div>
       </div>
     );
   }
 }
 
-export default ShoppingCart;
+ShoppingCart.propTypes = {
+  updateQuantityProduct: PropTypes.func.isRequired,
+  deleteToCart: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  cart: state.cart,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  deleteToCart: (id) => dispatch(removeToCart(id)),
+  updateQuantityProduct: (array) => dispatch(updateCart(array)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCart);

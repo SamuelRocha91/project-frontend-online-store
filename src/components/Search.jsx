@@ -11,7 +11,7 @@ class Search extends Component {
     return (
       <div className="div-search">
         <form className="form-search">
-          <spam className="spam-search">
+          <span className="spam-search">
             <input
               value={ query }
               data-testid="query-input"
@@ -19,16 +19,17 @@ class Search extends Component {
               onChange={ handleChange }
             />
             <button
-              data-testid="query-button"
+              className="img-btn"
               type="button"
               onClick={ () => handleClick(identifier, query) }
             >
               <img
                 src="https://img.icons8.com/ios-filled/50/ffffff/search--v1.png"
                 alt="Icone de lupa para pesquisar"
+                className="img-btn"
               />
             </button>
-          </spam>
+          </span>
         </form>
         <ul className="ul-search">
           {isProductsNotEmpty
@@ -36,7 +37,6 @@ class Search extends Component {
               <li
                 className="li-card"
                 key={ id }
-                data-testid="product"
               >
                 <Card
                   isDetails={ false }
@@ -46,7 +46,6 @@ class Search extends Component {
                   price={ price }
                 />
                 <ButtonAddToCart
-                  dataTestId="product-add-to-cart"
                   id={ id }
                   title={ title }
                   thumbnail={ thumbnail }
