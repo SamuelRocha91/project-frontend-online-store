@@ -1,85 +1,96 @@
-# <img src="https://agenciars.com.br/wp-content/uploads/2022/06/Trybe.png" alt="Trybe Logo" width="52" height="30" /> مشروع متجر الإنترنت الأمامي <img src="https://agenciars.com.br/wp-content/uploads/2022/06/Trybe.png" alt="Trybe Logo" width="52" height="30" />
+# <img src="https://cdn-icons-png.flaticon.com/128/10832/10832132.png" alt="Trybe Logo" width="42" height="30" />مشروع المتجر الإلكتروني للواجهة الأمامية <img src="https://cdn-icons-png.flaticon.com/128/10832/10832132.png" alt="Trybe Logo" width="42" height="30" />
 
 ## 🌐 [![Português](https://img.shields.io/badge/Português-green)](https://github.com/SamuelRocha91/project-frontend-online-store/blob/main/README.md) [![Español](https://img.shields.io/badge/Español-yellow)](https://github.com/SamuelRocha91/project-frontend-online-store/blob/main/README_es.md) [![English](https://img.shields.io/badge/English-blue)](https://github.com/SamuelRocha91/project-frontend-online-store/blob/main/README_en.md) [![Русский](https://img.shields.io/badge/Русский-lightgrey)](https://github.com/SamuelRocha91/project-frontend-online-store/blob/main/README_ru.md) [![中文](https://img.shields.io/badge/中文-red)](https://github.com/SamuelRocha91/project-frontend-online-store/blob/main/README_ch.md) [![العربية](https://img.shields.io/badge/العربية-orange)](https://github.com/SamuelRocha91/project-frontend-online-store/blob/main/README_ar.md)
 
 ![معاينة التطبيق](./public/onlineStore.gif)
 
-تم تطوير هذا المشروع في وحدة الواجهة الأمامية من دورة تطوير الويب في Trybe. شمل المشروع استخدام Javascript وCSS وHTML من خلال إطار React. تم التعامل مع الملفات الموجودة في مجلد `src`، مع إنشاء مكونات، ومسارات، وصفحات. تم تنفيذ التطوير في فريق باستخدام منهجيات مرنة.
+تم تطوير هذا المشروع في وحدة الواجهة الأمامية في دورة تطوير الويب في Trybe. المشروع يتضمن استخدام JavaScript و CSS و HTML من خلال إطار عمل React. تم التعامل مع الملفات التابعة لمجلد `src`، مع إنشاء مكونات وطرق وصفحات. تم تنفيذ التطوير في فريق باستخدام منهجيات مرنة.
 
-## التقنيات المستخدمة
+<details>
+  <summary><h2>🚀 التقنيات المستخدمة</h2></summary>
 
-- **React**: لإنشاء واجهة المستخدم.
-- **Redux**: لإدارة حالة التطبيق.
-- **React Router**: للتنقل بين الصفحات.
-- **CSS**: لتصميم التطبيق.
-- **Docker**: لتجميع التطبيق في حاويات.
+  - **React**: لإنشاء واجهة المستخدم.
+  - **Redux**: لإدارة حالة التطبيق.
+  - **React Router**: للتنقل بين الصفحات.
+  - **CSS**: لتصميم التطبيق.
+  - **Docker**: لحاوية التطبيق.
 
-## المهارات التي تم تطويرها
+</details>
 
-- استخدام منهجيات مرنة (Trello وScrum)؛
-- تنفيذ المسارات باستخدام React Router؛
-- المنطق البرمجي؛
-- معالجة الحالة باستخدام Redux؛
-- إنشاء مكونات React.
+<details>
+  <summary><h2>🛠️ المهارات المكتسبة</h2></summary>
 
-## هيكل الكود
+  - استخدام المنهجيات المرنة (Trello و Scrum)؛
+  - تنفيذ الطرق باستخدام React Router؛
+  - منطق البرمجة؛
+  - إدارة الحالة باستخدام Redux؛
+  - إنشاء مكونات React.
 
-يتم إدارة هيكل المسارات في التطبيق بواسطة مكون `App`. إليك مثال على تنفيذ المسارات:
+</details>
 
-```javascript
-import { Switch, Route } from 'react-router-dom';
-import Main from './pages/Main';
-import ShoppingCart from './pages/ShoppingCart';
-import Checkout from './pages/Checkout';
-import Details from './pages/Details';
+<details>
+  <summary><h2>📂 هيكل الكود</h2></summary>
 
-class App extends Component {
-  render() {
-    return (
-      <Switch>
-        <Route exact path="/" component={ Main } />
-        <Route path="/shoppingcart" component={ ShoppingCart } />
-        <Route path="/checkout" render={ (props) => <Checkout { ...props } /> } />
-        <Route path="/details/:product" render={ (props) => <Details { ...props } /> } />
-      </Switch>
-    );
+  هيكل الطرق في التطبيق يتم إدارته بواسطة مكون `App`. إليك مثال على تنفيذ الطرق:
+
+  ```javascript
+  import { Switch, Route } from 'react-router-dom';
+  import Main from './pages/Main';
+  import ShoppingCart from './pages/ShoppingCart';
+  import Checkout from './pages/Checkout';
+  import Details from './pages/Details';
+
+  class App extends Component {
+    render() {
+      return (
+        <Switch>
+          <Route exact path="/" component={ Main } />
+          <Route path="/shoppingcart" component={ ShoppingCart } />
+          <Route path="/checkout" render={ (props) => <Checkout { ...props } /> } />
+          <Route path="/details/:product" render={ (props) => <Details { ...props } /> } />
+        </Switch>
+      );
+    }
   }
-}
 
-export default App;
-```
+  export default App;
+  ```
 
-## تشغيل التطبيق باستخدام Docker
+</details>
 
-لتشغيل التطبيق باستخدام Docker، اتبع الخطوات التالية:
+<details>
+  <summary><h2>🐳 تشغيل التطبيق باستخدام Docker</h2></summary>
 
-1. **بناء صورة Docker**:
+  لتشغيل التطبيق باستخدام Docker، اتبع الخطوات أدناه:
 
-   في دليل المشروع، نفذ الأمر التالي لإنشاء صورة Docker:
+  1. **بناء صورة Docker**:
 
-   ```bash
-   docker build -t react_store .
-   ```
+     في دليل المشروع، نفذ الأمر التالي لإنشاء صورة Docker:
 
-2. **تشغيل الحاوية**:
+     ```bash
+     docker build -t react_store .
+     ```
 
-   بعد بناء الصورة، يمكنك تشغيل حاوية منها بالأمر التالي:
+  2. **تشغيل الحاوية**:
 
-   ```bash
-   docker run -d --name react -p 3000:3000 react_store
-   ```
+     بعد بناء الصورة، يمكنك تشغيل حاوية منها بالأمر التالي:
 
-3. **الوصول إلى التطبيق**:
+     ```bash
+     docker run -d --name react -p 3000:3000 react_store
+     ```
 
-   بعد بدء تشغيل الحاوية، سيكون التطبيق متاحًا على [http://localhost:3000](http://localhost:3000).
+  3. **الوصول إلى التطبيق**:
 
-## مشاريع أخرى
+     بعد بدء الحاوية، سيكون التطبيق متاحًا على [http://localhost:3000](http://localhost:3000).
 
-- ⚽ [Typescript FootBall API](https://github.com/SamuelRocha91/trybeFutebolClube/blob/main/README_ar.md)
-- 🐉 [Trybers and Dragons](https://github.com/SamuelRocha91/trybeAndDragons/blob/main/README_ar.md)
-- 🌶️ [Recipes App](https://github.com/SamuelRocha91/ProjectRecipesApp/blob/main/README_ar.md)
-- 🎮 [Trivia](https://github.com/SamuelRocha91/trivia_game/blob/main/README_ar.md)
-- 🪧 [Blogs Api](https://github.com/SamuelRocha91/BlogsApi/blob/main/README_ar.md)
-- 👛 [Expense Organizer](https://github.com/SamuelRocha91/project-trybewallet/blob/main/README_ar.md)
-- 🗡️ [Trybe Smith](https://github.com/SamuelRocha91/TrybeSmith/blob/main/README_ar.md)
-- 🐣 [Pokedex](https://github.com/SamuelRocha91/pokedex/blob/main/README_ar.md)
+</details>
+
+<details>
+  <summary><h2>🔗 مشاريع أخرى</h2></summary>
+
+  - 🌶️ [Recipes App](https://github.com/SamuelRocha91/ProjectRecipesApp/blob/main/README_ar.md)
+  - 🎮 [Trivia](https://github.com/SamuelRocha91/trivia_game/blob/main/README_ar.md)
+  - 👛 [Expense organizer](https://github.com/SamuelRocha91/project-trybewallet/blob/main/README_ar.md)
+  - 🐣 [Pokedex](https://github.com/SamuelRocha91/pokedex/blob/main/README_ar.md)
+
+</details>
